@@ -3,6 +3,7 @@
  */
 public class hello {
     public static void main(String[] args) {
-        System.out.println("blabal");
+        System.out.println(args[0]);
+        System.exit(1);
     }
 }
