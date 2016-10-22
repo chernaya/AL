@@ -2,9 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Created by user on 01.10.2016.
- */
+
 public class Hello {
     public static void main(String[] args) {
         System.out.println(args[1]);
