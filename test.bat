@@ -11,4 +11,7 @@ echo %errorlevel%
 echo ***
 java -classpath "out/production/anyalena/" Hello
 echo %errorlevel%
+echo ***
+java -classpath "out/production/anyalena/" Hello uu
+echo %errorlevel%
 
