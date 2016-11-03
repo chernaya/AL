@@ -1,17 +1,32 @@
 @echo off
 echo ***
-java -classpath "out/production/anyalena/" Hello yyy ee
+java -classpath "out/production/AL/" Hello yyy ee
 echo %errorlevel%
 echo ***
-java -classpath "out/production/anyalena/" Hello urur 123
+java -classpath "out/production/AL/" Hello urur 123
 echo %errorlevel%
 echo ***
-java -classpath "out/production/anyalena/" Hello urur q
+java -classpath "out/production/Al/" Hello urur q
 echo %errorlevel%
 echo ***
-java -classpath "out/production/anyalena/" Hello
+java -classpath "out/production/AL/" Hello
 echo %errorlevel%
 echo ***
-java -classpath "out/production/anyalena/" Hello uu
+java -classpath "out/production/AL/" Hello uu
 echo %errorlevel%
-
+echo ***
+java -classpath "out/production/AL/" Hello urur 123 READ a
+echo %errorlevel%
+echo ***
+java -classpath "out/production/AL/" Hello urur 123 3 a
+echo %errorlevel%
+echo ***
+java -classpath "out/production/AL/" Hello urur 123 1 t
+echo %errorlevel%
+echo ***
+java -classpath "out/production/AL/" Hello urur 123 1
+echo %errorlevel%
+echo ***
+java -classpath "out/production/AL/" Hello urur 123 3
+echo %errorlevel%
+echo ***
