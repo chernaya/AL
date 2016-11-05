@@ -1,6 +1,5 @@
 import org.apache.commons.cli.*;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,37 +13,57 @@ public class Hello {
         options.addOption("pass", true, "параметр пароль");
 
         CommandLineParser parser = new DefaultParser();
-        CommandLine cmd = parser.parse( options, args);
+        CommandLine cmd = parser.parse(options, args);
 
         PolzVvod proba = new PolzVvod();
 
 
-        if(cmd.hasOption("h")) {
+        if (cmd.hasOption("h")) {
 
-            proba.h=true;
+            proba.h = true;
 
         }
 
 
-        proba.login  = cmd.getOptionValue("login");
-        proba.pass  = cmd.getOptionValue("pass");
+        proba.login = cmd.getOptionValue("login");
+        proba.pass = cmd.getOptionValue("pass");
         //proba.res  = cmd.getOptionValue("res");
         //proba.role= cmd.getOptionValue("role");
 
 
-
         List<User> userList = new ArrayList<>();
 
-        userList.add(new User(1, "ururur", "123", "new"));
-        userList.add(new User(2, "urur", "123", "new"));
+        userList.add(new User(1, "John Doe", "jdoe", "sup3rpaZZ"));
+        userList.add(new User(2, "Jane Row", "jrow", "Qweqrty12"));
 
         List<Role> RoleList = new ArrayList<>();
 
-        RoleList.add(new Role(1, "a", 1, 1));
-        RoleList.add(new Role(2, "a", 2, 2));
+        RoleList.add(new Role(1, 1, Permission.READ, "a"));
+        RoleList.add(new Role(2, 1, Permission.WRITE, "a.b"));
+        RoleList.add(new Role(1, 2, Permission.EXECUTE, "a.b.c"));
+        RoleList.add(new Role(2, 1, Permission.EXECUTE, "a.bc"));
+
+
+        if (proba.isEmpty()) {
+            System.out.println("данные не введены!!");
+            System.exit(0);
+        } else if (proba.authorization()) {
+
+            loginPass(proba.login, proba.pass, userList);
+        } else {
+
+        }
+
+/*
+    1 если пусто то выходим и пока
+    2 если если логин пароль и роль и ресурс то авторизация
+    3 если если логин пароль тоаутентификация
+
+*/
 
 
 
+/*
         if (args.length == 4) {
             String login = args[0];
             String pass = args[1];
@@ -72,7 +91,7 @@ public class Hello {
                     System.out.println("данные не введены!!");
                 }
             }
-
+*/
     }
 
     //Authentification
@@ -88,11 +107,11 @@ public class Hello {
     если есть то
 
             */
-       // boolean result;
+        // boolean result;
         for (final User user : userList) {
             if (user.login.equals(login)) {
                 if (user.pass.equals(pass)) {
-                   // System.out.println("Success");
+                    // System.out.println("Success");
                     System.exit(0);
                 } else {
                     System.exit(2);

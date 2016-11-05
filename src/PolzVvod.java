@@ -16,4 +16,8 @@ public class PolzVvod {
     boolean authorization() {
         return authentification() && res != null && role != null;
     }
+
+    boolean isEmpty(){
+        return(!authentification() && !authorization());
+    }
 }

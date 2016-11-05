@@ -5,7 +5,7 @@ public class Role {
     private int name;
     private String res;
     private int id;
-    private int user_id;
+    private Permission role;
 
     public int getName() {
         return name;
@@ -15,11 +15,11 @@ public class Role {
         return res;
     }
 
-    public Role(int name, String res, int id, int user_id) {
+    public Role(int id,int name,  Permission role, String res) {
 
         this.name = name;
         this.res = res;
         this.id = id;
-        this.user_id = user_id;
+        this.role = role;
     }
 }
