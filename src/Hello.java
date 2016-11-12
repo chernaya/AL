@@ -33,7 +33,7 @@ public class Hello {
         proba.role = cmd.getOptionValue("role");
 
 
-        List<User> userList = new ArrayList<>();
+        List<User> userList = new ArrayList<>();//
 
         userList.add(new User(1, "John Doe", "jdoe", "sup3rpaZZ"));
         userList.add(new User(2, "Jane Row", "jrow", "Qweqrty12"));
