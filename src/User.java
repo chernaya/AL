@@ -8,7 +8,7 @@ public class User {
     public String name;
     public int id;
 
-    public User(int i, String l, String n, String p)
+    public User(int i, String n, String l, String p)
     {
         id=i;
         login=l;

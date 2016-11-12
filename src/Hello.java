@@ -11,6 +11,8 @@ public class Hello {
         options.addOption("h", false, "вывести справку");
         options.addOption("login", true, "параметр логин");
         options.addOption("pass", true, "параметр пароль");
+        options.addOption("role", true, "параметр роль");
+        options.addOption("res", true, "параметр ресурс");
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = parser.parse(options, args);
@@ -27,8 +29,8 @@ public class Hello {
 
         proba.login = cmd.getOptionValue("login");
         proba.pass = cmd.getOptionValue("pass");
-        //proba.res  = cmd.getOptionValue("res");
-        //proba.role= cmd.getOptionValue("role");
+        proba.res = cmd.getOptionValue("res");
+        proba.role = cmd.getOptionValue("role");
 
 
         List<User> userList = new ArrayList<>();
@@ -49,10 +51,14 @@ public class Hello {
             System.exit(0);
         } else if (proba.authorization()) {
 
-            loginPass(proba.login, proba.pass, userList);
-        } else {
+            //loginPass(proba.login, proba.pass, userList);
+            Avtorizaition(proba.login, proba.pass, userList, proba.role, proba.res, RoleList);
+        } else if (proba.authentification()) {
 
+            loginPass(proba.login, proba.pass, userList);
         }
+
+    }
 
 /*
     1 если пусто то выходим и пока
@@ -62,54 +68,12 @@ public class Hello {
 */
 
 
-
-/*
-        if (args.length == 4) {
-            String login = args[0];
-            String pass = args[1];
-            String role = args[2];
-            String res = args[3];
-
-            loginPass(login, pass, userList);
-            Avtorizaition(role, res, RoleList);
-
-
-        }
-
-            if (args.length == 2) {
-
-                String login = args[0];
-                String pass = args[1];
-
-                loginPass(login, pass, userList);
-
-
-            } else {
-                if (args.length == 1) {
-                    System.out.println("пароль не введен!!!");
-                } else {
-                    System.out.println("данные не введены!!");
-                }
-            }
-*/
-    }
-
     //Authentification
     private static void loginPass(String login, String pass, List<User> userList) {
-    /*
-    есть список пользователей с паролями.
-            какой-либо пользователь вводит свои данные(логин и проль).
-    нужно проверить их правдивость.
-    проверяем если такой логин?
-    если его нет то ошибка.
-            если есть то проверяем его пароль.
-            если нет то ошибка
-    если есть то
 
-            */
-        // boolean result;
         for (final User user : userList) {
             if (user.login.equals(login)) {
+
                 if (user.pass.equals(pass)) {
                     // System.out.println("Success");
                     System.exit(0);
@@ -120,17 +84,21 @@ public class Hello {
 
         }
 
-        //System.exit(1);
+        System.exit(1);
     }
 
-    private static void Avtorizaition(String role, String res, List<Role> RoleList) {
+    private static void Avtorizaition(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList) {
         boolean roleExist = false;
+        for (final User user : userList) {
+            if (user.login.equals(login)) {
 
+                if (user.pass.equals(pass)) {
         for (Permission permisson : Permission.values()) {
             String name = permisson.name();
             if (name.equals(role)) {
                 roleExist = true;
                 System.out.println("EE ROL' SUSHESTVUET");
+                System.exit(0);
             }
         }
 
@@ -139,7 +107,14 @@ public class Hello {
             System.exit(3);
         }
 
+                } else {
+                    System.exit(2);
+                }
+            }
 
+        }
+
+        System.exit(1);
     }
 
 }
