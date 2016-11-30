@@ -120,7 +120,7 @@ public class Hello {
         int lp = sp.length;
         int lc = sc.length;
         if (lc >= lp) {
-            System.out.println("длина потомка >= длины родителя");
+            System.out.println("длина потомка >= дdлины родителя");
             for (int i = 0; i < lp; i++) {
                 if (!sp[i].equals(sc[i])) {
                     System.out.println("ресурс не совпадает");
