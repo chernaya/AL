@@ -28,6 +28,9 @@ public class Hello {
         options.addOption("pass", true, "параметр пароль");
         options.addOption("role", true, "параметр роль");
         options.addOption("res", true, "параметр ресурс");
+        options.addOption("ds", true, "параметр начало даты");
+        options.addOption("de", true, "параметр конец даты");
+        options.addOption("a", true, "параметр значение");
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = parser.parse(options, args);
@@ -45,6 +48,9 @@ public class Hello {
         proba.login = cmd.getOptionValue("login");
         proba.pass = cmd.getOptionValue("pass");
         proba.res = cmd.getOptionValue("res");
+        proba.ds = cmd.getOptionValue("data_st");
+        proba.de = cmd.getOptionValue("data_end");
+        proba.a = cmd.getOptionValue("amount");
         proba.role = cmd.getOptionValue("role");
 
 
@@ -59,6 +65,10 @@ public class Hello {
         RoleList.add(new Role(2, 1, Permission.WRITE, "a.b"));
         RoleList.add(new Role(1, 2, Permission.EXECUTE, "a.b.c"));
         RoleList.add(new Role(2, 1, Permission.EXECUTE, "a.bc"));
+
+        List<Accouting> AccountList = new ArrayList<>();
+
+        AccountList.add(new Accouting(1, 1, "4", "2016-13-04", "14-04-1999"));
         //String[] split = proba.res.split("[.]");
         //System.out.println(split[1]);
 

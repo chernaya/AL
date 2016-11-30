@@ -7,6 +7,9 @@ public class PolzVvod {
     String pass;
     String res;
     String role;
+    String ds;
+    String de;
+    String a;
 
     boolean authentification() {
         return login != null && pass != null;
@@ -20,4 +23,6 @@ public class PolzVvod {
     boolean isEmpty(){
         return(!authentification() && !authorization());
     }
+
+    boolean accounting() {return authentification() && authorization() && ds != null && de != null && a != null; }
 }
