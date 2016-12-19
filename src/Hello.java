@@ -173,7 +173,7 @@ public class Hello {
     }
 
     private static void Accounting(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList, List<Accouting> AccountList, String a, String de, String ds)  {
-        Avtorizaition(login, pass, userList, role, res, RoleList);
+        Avtorizaition(login, pass, userList, role, res, RoleList);//
         float f3 = 0;
         try {
             f3 = Float.parseFloat(a);
