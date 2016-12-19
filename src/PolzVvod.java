@@ -21,8 +21,8 @@ public class PolzVvod {
     }
 
     boolean isEmpty(){
-        return(!authentification() && !authorization());
-    }
+        return !authentification();}// && !authorization());}
 
-    boolean accounting() {return authentification() && authorization() && ds != null && de != null && a != null; }
+
+    boolean accounting() {return authorization() && ds != null && de != null && a != null; }
 }

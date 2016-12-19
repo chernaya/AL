@@ -1,9 +1,9 @@
 @echo off
 echo ***
-java -classpath "out/production/AL/" Hello yyy ee
+java -classpath "out/production/AL/" Hello uu
 echo %errorlevel%
 echo ***
-java -classpath "out/production/AL/" Hello urur 123
+java -classpath "C:/Users/user/tmp/out/production/AL/" Hello urur 123
 echo %errorlevel%
 echo ***
 java -classpath "out/production/Al/" Hello urur q
@@ -15,7 +15,7 @@ echo ***
 java -classpath "out/production/AL/" Hello uu
 echo %errorlevel%
 echo ***
-java -classpath "out/production/AL/" Hello urur 123 READ a
+java -classpath "out/production/AL/" Hello - login urur 123 READ a
 echo %errorlevel%
 echo ***
 java -classpath "out/production/AL/" Hello urur 123 3 a

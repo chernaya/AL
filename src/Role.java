@@ -5,7 +5,7 @@ public class Role {
     private int name;
     private String res;
     private int id;
-    private Permission role;
+    public Permission role;
 
     public int getName() {
         return name;

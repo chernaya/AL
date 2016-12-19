@@ -3,7 +3,6 @@ import org.apache.commons.cli.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 //пароль должен храниться безопасно(Сравните пароль пользователя)
 //получать строку и превращать её в дату
 //надо возвращать код 5 - некорректная активность (невалидная дата или объем)
@@ -48,9 +47,9 @@ public class Hello {
         proba.login = cmd.getOptionValue("login");
         proba.pass = cmd.getOptionValue("pass");
         proba.res = cmd.getOptionValue("res");
-        proba.ds = cmd.getOptionValue("data_st");
-        proba.de = cmd.getOptionValue("data_end");
-        proba.a = cmd.getOptionValue("amount");
+        proba.ds = cmd.getOptionValue("ds");
+        proba.de = cmd.getOptionValue("de");
+        proba.a = cmd.getOptionValue("a");
         proba.role = cmd.getOptionValue("role");
 
 
@@ -68,50 +67,52 @@ public class Hello {
 
         List<Accouting> AccountList = new ArrayList<>();
 
-        AccountList.add(new Accouting(1, 1, "4", "2016-13-04", "14-04-1999"));
+        //AccountList.add(new Accouting(1, 1, "4", "2016-13-04", "14-04-1999"));
         //String[] split = proba.res.split("[.]");
         //System.out.println(split[1]);
 
         if (proba.isEmpty()) {
             System.out.println("данные не введены!!");
             System.exit(0);
+        } else if (proba.accounting()) {
+            System.out.println("7 параметров есть можно аккаунтить");
+            Accounting(proba.login, proba.pass, userList, proba.role, proba.res, RoleList, AccountList, proba.a, proba.de, proba.ds);
+            System.exit(0);
+
         } else if (proba.authorization()) {
             System.out.println("4 параметра есть можно авторизовать");
-            //loginPass(proba.login, proba.pass, userList);
             Avtorizaition(proba.login, proba.pass, userList, proba.role, proba.res, RoleList);
+            System.exit(0);
         } else if (proba.authentification()) {
             System.out.println("2 параметра есть можно аутентифицировать");
             loginPass(proba.login, proba.pass, userList);
+            System.exit(0);
         }
 
     }
 
-/*
-    1 если пусто то выходим и пока
-    2 если если логин пароль и роль и ресурс то авторизация
-    3 если если логин пароль тоаутентификация
-
-*/
-
 
     //Authentification
     private static void loginPass(String login, String pass, List<User> userList) {
-
+        int flag = 0;
         for (final User user : userList) {
             if (user.login.equals(login)) {
                 System.out.println("правильный логин");
+                flag = 1;
                 if (user.pass.equals(pass)) {
                     System.out.println("правильный пароль");
-                    System.exit(0);
+                    //System.exit(0);
                 } else {
                     System.out.println("неправильный пароль");
                     System.exit(2);
                 }
             }
-
         }
-        System.out.println("неправильный логин");
-        System.exit(1);
+
+        if (flag == 0) {
+            System.out.println("неправильный логин");
+            System.exit(1);
+        }
     }
 
     private static boolean isChild(String parent, String child) {
@@ -123,59 +124,73 @@ public class Hello {
             System.out.println("длина потомка >= длины родителя");
             for (int i = 0; i < lp; i++) {
                 if (!sp[i].equals(sc[i])) {
-                    System.out.println("ресурс не совпадает");
+                    //System.out.println("ресурс не совпадает");
                     return false;
                 }
             }
-            System.out.println("ресурс совпадает");
+            //System.out.println("ресурс совпадает");
             return true;
         } else {
-            System.out.println("ресурс не совпадает");
+            //System.out.println("ресурс не совпадает");
             return false;
         }
     }
 
     private static void Avtorizaition(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList) {
         boolean roleExist = false;
-        for (final User user : userList) {
-            if (user.login.equals(login)) {
-                System.out.println("правильный логин");
-                if (user.pass.equals(pass)) {
-                    System.out.println("правильный пароль");
-                    for (Permission permisson : Permission.values()) {
-                        String name = permisson.name();
-                        if (name.equals(role)) {
-                            roleExist = true;
-                            System.out.println("EE ROL' SUSHESTVUET");
-                            for (final Role rees : RoleList) {
-                                if (isChild(rees.getRes(), res)) {
-                                    System.out.println("ресурс совпадает");
-                                    System.exit(0);
-                                } else {
-                                    System.out.println("ресурс не совпадает");
-                                    System.exit(4);
-                                }
+        int flag = 0;
+        loginPass(login, pass, userList);
+        for (Permission permisson : Permission.values()) {
+            String name = permisson.name();
+            if (name.equals(role)) {
+                roleExist = true;
+                System.out.println("роль существует");
+                for (final Role rees : RoleList) {
 
-                            }
-
-                            System.exit(0);
-                        }
+                    if (isChild(rees.getRes(), res)) {
+                        System.out.println("ресурс совпадает");
+                        // System.exit(0);
+                        flag = 1;
                     }
 
-                    if (!roleExist) {
-                        System.out.println("WRONG ROLE");
-                        System.exit(3);
-                    }
 
-                } else {
-                    System.out.println("неправильный пароль");
-                    System.exit(2);
                 }
-            }
+                if (flag == 0) {
+                    System.out.println("ресурс не совпадает");
+                    System.exit(4);
+                }
 
+                //System.exit(0);
+            }
         }
-        System.out.println("неправильный логин");
-        System.exit(1);
+
+        if (!roleExist) {
+            System.out.println("роль не существует");
+            System.exit(3);
+        }
+
+
+    }
+
+    private static void Accounting(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList, List<Accouting> AccountList, String a, String de, String ds)  {
+        Avtorizaition(login, pass, userList, role, res, RoleList);
+        float f3 = 0;
+        try {
+            f3 = Float.parseFloat(a);
+            //AccountList.add(new Accouting(1, 1, "4", "2016-13-04", "14-04-1999"));
+        } catch (NumberFormatException e) {
+            System.out.println("Неверный формат строки!");
+        }
+
+/*
+        String sd = "03.10.2008";
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+       try{ Date date = format.parse(sd);}
+       catch (NumberFormatException e) {
+           System.out.println("Неверный формат строки!");
+       }
+*/
+
     }
 
 }
