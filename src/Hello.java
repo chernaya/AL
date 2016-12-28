@@ -204,7 +204,7 @@ public class Hello {
             System.out.println("некорректная активность (невалидная дата или объем)");
             System.exit(5);
         }
-       //AccountList.add(new Accouting(1, 1, "4", "2016-13-04", "14-04-1999"));
+        //AccountList.add(new Accouting(1, 1, "4", "2016-13-04", "14-04-1999"));
 
     }
 

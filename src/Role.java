@@ -15,7 +15,7 @@ public class Role {
         return res;
     }
 
-    public Role(int id,int name,  Permission role, String res) {
+    public Role(int id, int name, Permission role, String res) {
 
         this.name = name;
         this.res = res;

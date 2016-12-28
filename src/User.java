@@ -12,18 +12,24 @@ public class User {
     public int id;
 
     public User(int i, String n, String l, String p) throws NoSuchAlgorithmException {
-        id=i;
-        login=l;
+        id = i;
+        login = l;
         salt = ForPass.makeSalt();
         pass = ForPass.getHash(ForPass.getHash(p) + salt);
-        name=n;
+        name = n;
     }
-    public String getSalt() { return salt; }
+
+    public String getSalt() {
+        return salt;
+    }
 
 
+    public String GetLogin() {
+        return login;
+    }
 
-
-    public String GetLogin(){return login;}
-    public String GetPass(){return pass;}
+    public String GetPass() {
+        return pass;
+    }
 
 }

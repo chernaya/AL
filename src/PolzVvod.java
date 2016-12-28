@@ -20,9 +20,12 @@ public class PolzVvod {
         return authentification() && res != null && role != null;
     }
 
-    boolean isEmpty(){
-        return !authentification();}// && !authorization());}
+    boolean isEmpty() {
+        return !authentification();
+    }// && !authorization());}
 
 
-    boolean accounting() {return authorization() && ds != null && de != null && a != null; }
+    boolean accounting() {
+        return authorization() && ds != null && de != null && a != null;
+    }
 }
