@@ -1,28 +1,18 @@
 import org.apache.commons.cli.*;
 
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//пароль должен храниться безопасно(Сравните пароль пользователя)
-//получать строку и превращать её в дату
-//надо возвращать код 5 - некорректная активность (невалидная дата или объем)
 /*
-Добавьте еще три параметра значение, даты начала и конца
-В приложении проверяйте что если количество параметров 7, то нужно не только аутентифицировать, авторизовать, но и аккаунтить
-Научитесь парсить строку в число и обрабатывайте ошибку если это невозможно
-Научитесь парсить строку в дату и обрабатывайте ошибку если это невозможно
-Создайте класс который будет содержать потраченные ресурсы
-Добавьте в приложение коллекцию которая будет содержать объекты из предыдущего пункта
-В случае успеха добавляйте новую запись
-Добавьте библиотеку apache-cli и перепишите работу с параметрами командной строки
 Добавьте методы проверки пароля, которые будут добавлять соль, хэшировать и сравнивать полученный результат с паролем из объекта Пользователь
 */
 
 public class Hello {
-    public static void main(String[] args) throws ParseException, java.text.ParseException {
+    public static void main(String[] args) throws ParseException, java.text.ParseException, NoSuchAlgorithmException {
         // create Options object
         Options options = new Options();
         options.addOption("h", false, "вывести справку");
@@ -97,13 +87,16 @@ public class Hello {
 
 
     //Authentification
-    private static void loginPass(String login, String pass, List<User> userList) {
+    private static void loginPass(String login, String pass, List<User> userList) throws NoSuchAlgorithmException {
         int flag = 0;
+        User tempUser = null;
         for (final User user : userList) {
             if (user.login.equals(login)) {
                 System.out.println("правильный логин");
                 flag = 1;
-                if (user.pass.equals(pass)) {
+                tempUser = user;
+                String passCheck = ForPass.getHash(ForPass.getHash(pass) + tempUser.getSalt());
+                if (user.pass.equals(passCheck)) {
                     System.out.println("правильный пароль");
                     //System.exit(0);
                 } else {
@@ -140,7 +133,7 @@ public class Hello {
         }
     }
 
-    private static void Avtorizaition(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList) {
+    private static void Avtorizaition(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList) throws NoSuchAlgorithmException {
         boolean roleExist = false;
         int flag = 0;
         loginPass(login, pass, userList);
@@ -176,7 +169,7 @@ public class Hello {
 
     }
 
-    private static void Accounting(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList, List<Accouting> AccountList, String a, String de, String ds) {
+    private static void Accounting(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList, List<Accouting> AccountList, String a, String de, String ds) throws NoSuchAlgorithmException {
         Avtorizaition(login, pass, userList, role, res, RoleList);//
         float f3 = 0;
         try {
