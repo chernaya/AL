@@ -80,6 +80,7 @@ public class Hello {
         } else if (proba.accounting()) {
             System.out.println("7 параметров есть можно аккаунтить");
             Accounting(proba.login, proba.pass, userList, proba.role, proba.res, RoleList, AccountList, proba.a, proba.de, proba.ds);
+            AccountList.add(new Accouting(proba.a, proba.ds, proba.de));
             System.exit(0);
 
         } else if (proba.authorization()) {
@@ -210,7 +211,7 @@ public class Hello {
             System.out.println("некорректная активность (невалидная дата или объем)");
             System.exit(5);
         }
-
+       //AccountList.add(new Accouting(1, 1, "4", "2016-13-04", "14-04-1999"));
 
     }
 
