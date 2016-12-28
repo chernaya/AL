@@ -1,6 +1,4 @@
-/**
- * Created by student on 03.11.16.
- */
+
 public class PolzVvod {
     boolean h;
     String login;
@@ -22,7 +20,7 @@ public class PolzVvod {
 
     boolean isEmpty() {
         return !authentification();
-    }// && !authorization());}
+    }
 
 
     boolean accounting() {

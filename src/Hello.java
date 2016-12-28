@@ -7,13 +7,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/*
-Добавьте методы проверки пароля, которые будут добавлять соль, хэшировать и сравнивать полученный результат с паролем из объекта Пользователь
-*/
 
 public class Hello {
     public static void main(String[] args) throws ParseException, java.text.ParseException, NoSuchAlgorithmException {
-        // create Options object
         Options options = new Options();
         options.addOption("h", false, "вывести справку");
         options.addOption("login", true, "параметр логин");
@@ -46,7 +42,7 @@ public class Hello {
         proba.role = cmd.getOptionValue("role");
 
 
-        List<User> userList = new ArrayList<>();///
+        List<User> userList = new ArrayList<>();
 
         userList.add(new User(1, "John Doe", "jdoe", "sup3rpaZZ"));
         userList.add(new User(2, "Jane Row", "jrow", "Qweqrty12"));
@@ -60,9 +56,6 @@ public class Hello {
 
         List<Accouting> AccountList = new ArrayList<>();
 
-        //AccountList.add(new Accouting(1, 1, "4", "2016-13-04", "14-04-1999"));
-        //String[] split = proba.res.split("[.]");
-        //System.out.println(split[1]);
 
         if (proba.isEmpty()) {
             System.out.println("данные не введены!!");
@@ -146,10 +139,8 @@ public class Hello {
 
                     if (isChild(rees.getRes(), res)) {
                         System.out.println("ресурс совпадает");
-                        // System.exit(0);
                         flag = 1;
                     }
-
 
                 }
                 if (flag == 0) {
@@ -157,7 +148,6 @@ public class Hello {
                     System.exit(4);
                 }
 
-                //System.exit(0);
             }
         }
 
@@ -165,8 +155,6 @@ public class Hello {
             System.out.println("роль не существует");
             System.exit(3);
         }
-
-
     }
 
     private static void Accounting(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList, List<Accouting> AccountList, String a, String de, String ds) throws NoSuchAlgorithmException {
@@ -174,13 +162,11 @@ public class Hello {
         float f3 = 0;
         try {
             f3 = Float.parseFloat(a);
-            //AccountList.add(new Accouting(1, 1, "4", "2016-13-04", "14-04-1999"));
         } catch (NumberFormatException e) {
             System.out.println("некорректная активность (невалидная дата или объем)");
             System.exit(5);
         }
 
-        //String str_date="11-01-2007";
         DateFormat formatter;
         Date date2;
         formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -204,7 +190,6 @@ public class Hello {
             System.out.println("некорректная активность (невалидная дата или объем)");
             System.exit(5);
         }
-        //AccountList.add(new Accouting(1, 1, "4", "2016-13-04", "14-04-1999"));
 
     }
 
