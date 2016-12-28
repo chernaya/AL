@@ -1,6 +1,9 @@
 import org.apache.commons.cli.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 //пароль должен храниться безопасно(Сравните пароль пользователя)
@@ -19,7 +22,7 @@ import java.util.List;
 */
 
 public class Hello {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, java.text.ParseException {
         // create Options object
         Options options = new Options();
         options.addOption("h", false, "вывести справку");
@@ -172,24 +175,42 @@ public class Hello {
 
     }
 
-    private static void Accounting(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList, List<Accouting> AccountList, String a, String de, String ds)  {
+    private static void Accounting(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList, List<Accouting> AccountList, String a, String de, String ds) {
         Avtorizaition(login, pass, userList, role, res, RoleList);//
         float f3 = 0;
         try {
             f3 = Float.parseFloat(a);
             //AccountList.add(new Accouting(1, 1, "4", "2016-13-04", "14-04-1999"));
         } catch (NumberFormatException e) {
-            System.out.println("Неверный формат строки!");
+            System.out.println("некорректная активность (невалидная дата или объем)");
+            System.exit(5);
         }
 
-/*
-        String sd = "03.10.2008";
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-       try{ Date date = format.parse(sd);}
-       catch (NumberFormatException e) {
-           System.out.println("Неверный формат строки!");
-       }
-*/
+        //String str_date="11-01-2007";
+        DateFormat formatter;
+        Date date2;
+        formatter = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            date2 = formatter.parse(ds);
+            System.out.println("start");
+            System.out.println(date2);
+        } catch (java.text.ParseException e) {
+            System.out.println("некорректная активность (невалидная дата или объем)");
+            System.exit(5);
+        }
+
+        DateFormat formatter1;
+        Date date;
+        formatter1 = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            date = formatter1.parse(de);
+            System.out.println("end");
+            System.out.println(date);
+        } catch (java.text.ParseException e) {
+            System.out.println("некорректная активность (невалидная дата или объем)");
+            System.exit(5);
+        }
+
 
     }
 
