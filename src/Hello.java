@@ -1,8 +1,8 @@
 import org.apache.commons.cli.*;
+import org.apache.commons.cli.ParseException;
 
 import java.security.NoSuchAlgorithmException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.text.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -62,13 +62,13 @@ public class Hello {
             System.exit(0);
         } else if (proba.accounting()) {
             System.out.println("7 параметров есть можно аккаунтить");
-            Accounting(proba.login, proba.pass, userList, proba.role, proba.res, RoleList, AccountList, proba.a, proba.de, proba.ds);
+            accounting(proba.login, proba.pass, userList, proba.role, proba.res, RoleList, AccountList, proba.a, proba.de, proba.ds);
             AccountList.add(new Accouting(proba.a, proba.ds, proba.de));
             System.exit(0);
 
         } else if (proba.authorization()) {
             System.out.println("4 параметра есть можно авторизовать");
-            Avtorizaition(proba.login, proba.pass, userList, proba.role, proba.res, RoleList);
+            avtorization(proba.login, proba.pass, userList, proba.role, proba.res, RoleList);
             System.exit(0);
         } else if (proba.authentification()) {
             System.out.println("2 параметра есть можно аутентифицировать");
@@ -126,7 +126,7 @@ public class Hello {
         }
     }
 
-    private static void Avtorizaition(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList) throws NoSuchAlgorithmException {
+    private static void avtorization(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList) throws NoSuchAlgorithmException {
         boolean roleExist = false;
         int flag = 0;
         loginPass(login, pass, userList);
@@ -157,8 +157,8 @@ public class Hello {
         }
     }
 
-    private static void Accounting(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList, List<Accouting> AccountList, String a, String de, String ds) throws NoSuchAlgorithmException {
-        Avtorizaition(login, pass, userList, role, res, RoleList);//
+    private static void accounting(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList, List<Accouting> AccountList, String a, String de, String ds) throws NoSuchAlgorithmException {
+        avtorization(login, pass, userList, role, res, RoleList);//
         float f3 = 0;
         try {
             f3 = Float.parseFloat(a);

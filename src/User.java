@@ -24,11 +24,11 @@ public class User {
     }
 
 
-    public String GetLogin() {
+    public String getLogin() {
         return login;
     }
 
-    public String GetPass() {
+    public String getPass() {
         return pass;
     }
 
