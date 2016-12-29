@@ -3,7 +3,7 @@ public class Role {
     private int name;
     private String res;
     private int id;
-    public Permission role;
+    public permission role;
 
     public int getName() {
         return name;
@@ -13,7 +13,7 @@ public class Role {
         return res;
     }
 
-    public Role(int id, int name, Permission role, String res) {
+    public Role(int id, int name, permission role, String res) {
 
         this.name = name;
         this.res = res;

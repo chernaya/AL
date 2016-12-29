@@ -49,10 +49,10 @@ public class Hello {
 
         List<Role> RoleList = new ArrayList<>();
 
-        RoleList.add(new Role(1, 1, Permission.READ, "a"));
-        RoleList.add(new Role(2, 1, Permission.WRITE, "a.b"));
-        RoleList.add(new Role(1, 2, Permission.EXECUTE, "a.b.c"));
-        RoleList.add(new Role(2, 1, Permission.EXECUTE, "a.bc"));
+        RoleList.add(new Role(1, 1, permission.READ, "a"));
+        RoleList.add(new Role(2, 1, permission.WRITE, "a.b"));
+        RoleList.add(new Role(1, 2, permission.EXECUTE, "a.b.c"));
+        RoleList.add(new Role(2, 1, permission.EXECUTE, "a.bc"));
 
         List<Accouting> AccountList = new ArrayList<>();
 
@@ -130,7 +130,7 @@ public class Hello {
         boolean roleExist = false;
         int flag = 0;
         loginPass(login, pass, userList);
-        for (Permission permisson : Permission.values()) {
+        for (permission permisson : permission.values()) {
             String name = permisson.name();
             if (name.equals(role)) {
                 roleExist = true;
@@ -158,7 +158,7 @@ public class Hello {
     }
 
     private static void accounting(String login, String pass, List<User> userList, String role, String res, List<Role> RoleList, List<Accouting> AccountList, String a, String de, String ds) throws NoSuchAlgorithmException {
-        avtorization(login, pass, userList, role, res, RoleList);//
+        avtorization(login, pass, userList, role, res, RoleList);//.
         float f3 = 0;
         try {
             f3 = Float.parseFloat(a);
