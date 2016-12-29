@@ -170,6 +170,7 @@ public class Hello {
         DateFormat formatter;
         Date date2;
         formatter = new SimpleDateFormat("yyyy-MM-dd");
+        formatter.setLenient(false);
         try {
             date2 = formatter.parse(ds);
             System.out.println("start");
@@ -182,6 +183,7 @@ public class Hello {
         DateFormat formatter1;
         Date date;
         formatter1 = new SimpleDateFormat("yyyy-MM-dd");
+        formatter1.setLenient(false);
         try {
             date = formatter1.parse(de);
             System.out.println("end");
