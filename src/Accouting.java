@@ -2,14 +2,14 @@
 public class Accouting {
 
     public String amount;
-    public String date_st;
-    public String date_end;
+    public String dateSt;
+    public String dateEnd;
 
-    public Accouting(String a, String ds, String de) {
+    public Accouting(String a, String dateSt, String dateEnd) {
 
         amount = a;
-        date_st = ds;
-        date_end = de;
+        dateSt = dateSt;
+        dateEnd = dateEnd;
     }
 
 

@@ -49,10 +49,10 @@ public class Hello {
 
         List<Role> RoleList = new ArrayList<>();
 
-        RoleList.add(new Role(1, 1, permission.READ, "a"));
-        RoleList.add(new Role(2, 1, permission.WRITE, "a.b"));
-        RoleList.add(new Role(1, 2, permission.EXECUTE, "a.b.c"));
-        RoleList.add(new Role(2, 1, permission.EXECUTE, "a.bc"));
+        RoleList.add(new Role(1, 1, Permission.READ, "a"));
+        RoleList.add(new Role(2, 1, Permission.WRITE, "a.b"));
+        RoleList.add(new Role(1, 2, Permission.EXECUTE, "a.b.c"));
+        RoleList.add(new Role(2, 1, Permission.EXECUTE, "a.bc"));
 
         List<Accouting> AccountList = new ArrayList<>();
 
@@ -130,7 +130,7 @@ public class Hello {
         boolean roleExist = false;
         int flag = 0;
         loginPass(login, pass, userList);
-        for (permission permisson : permission.values()) {
+        for (Permission permisson : Permission.values()) {
             String name = permisson.name();
             if (name.equals(role)) {
                 roleExist = true;
